@@ -1,0 +1,14 @@
+<div>
+  <p>
+    <strong>Content:</strong>
+    <%= comment.content %>
+  </p>
+</div>
+
+<div>
+  <% if user_signed_in? %>
+    <% if (current_user.id == comment.user_id) %>
+      <%= button_to "Destroy this comment", [comment.publication, comment], method: :delete %>
+    <% end %>
+  <% end %>
+</div>

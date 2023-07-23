@@ -11,3 +11,14 @@
     <% end %>
   <% end %>
 </div>
+
+<div>
+  <p>Comentarios</p>
+  <%= render @publication.comments %>
+</div>
+
+<div>
+  <% if user_signed_in? %>
+    <%= render "comments/form", comment: @comment %>
+  <% end %>
+</div>
