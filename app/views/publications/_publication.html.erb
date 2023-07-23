@@ -1,17 +1,36 @@
-<div id="<%= dom_id publication %>">
-  <p>
-    <strong>Image:</strong>
-    <%= publication.image %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= publication.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= publication.description %>
-  </p>
-
+<div id="<%= dom_id publication %>" class="col-4 py-2">
+  <div class="card text-center border-success">
+    <img src="<%= publication.image %>" style="height: 200px; object-fit: cover;">
+    <div class="card-header">
+      <% if action_name == 'index' %>
+        <%= link_to publication do %>
+          <i class="bi bi-eye-fill text-primary fs-5"></i>
+        <% end %>
+      <% else %>
+        <div class="d-flex justify-content-around">
+          <%= link_to publications_path do %>
+            <i class="bi bi-arrow-return-left text-secondary fs-5 px-1"></i>
+          <% end %>
+          <% if user_signed_in? %>
+            <% if current_user.id == @publication.user_id %>
+              <%= link_to edit_publication_path(publication) do %>
+                <i class="bi bi-pencil-fill text-success fs-5 px-1"></i>
+              <% end %>
+              <%= button_to @publication, method: :delete, style: "all: unset; cursor: pointer" do %>
+                <i class="bi bi-trash-fill text-danger fs-5 px-1"></i>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold">
+        <%= publication.title %>
+      </h5>
+      <p class="card-text fst-italic">
+        <%= publication.description %>
+      </p>
+    </div>
+  </div>
 </div>

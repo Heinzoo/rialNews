@@ -1,14 +1,24 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Publications</h1>
-
-<div id="publications">
-  <% @publications.each do |publication| %>
-    <%= render publication %>
-    <p>
-      <%= link_to "Show this publication", publication %>
-    </p>
-  <% end %>
+<div class="toast align-items-center text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      <%= notice %>
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
 </div>
 
-<%= link_to "New publication", new_publication_path %>
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <h1>Noticias</h1>
+    <% if user_signed_in? %>
+      <%= link_to "Nueva Noticia", new_publication_path, class: "btn btn-outline-success" %>
+    <% end %>
+  </div>
+  <div id="publications">
+    <div class="row">
+      <% @publications.each do |publication| %>
+        <%= render publication %>
+      <% end %>
+    </div>
+  </div>
+</div>

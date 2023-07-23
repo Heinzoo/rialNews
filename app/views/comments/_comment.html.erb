@@ -1,14 +1,23 @@
-<div>
-  <p>
-    <strong>Content:</strong>
-    <%= comment.content %>
-  </p>
-</div>
-
-<div>
-  <% if user_signed_in? %>
-    <% if (current_user.id == comment.user_id) %>
-      <%= button_to "Destroy this comment", [comment.publication, comment], method: :delete %>
-    <% end %>
-  <% end %>
+<div class="d-flex justify-content-center align-items-center">
+  <div class="toast fade show my-2" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="<%= comment.user.image %>" class="rounded me-2" style="width: 35px">
+      <strong class="me-auto">
+        <%= comment.user.name %>
+      </strong>
+      <small>
+        <%= distance_of_time_in_words(comment.created_at, Time.now) %>
+      </small>
+      <% if user_signed_in? %>
+        <% if (current_user.id == comment.user_id) %>
+          <%= button_to [comment.publication, comment], method: :delete, style: "all: unset; cursor: pointer" do %>
+            <i class="bi bi-trash-fill text-danger fs-5 px-1"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="toast-body">
+      <%= comment.content %>
+    </div>
+  </div>
 </div>

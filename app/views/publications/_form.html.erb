@@ -11,22 +11,26 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image %>
+  <div class="input-group py-2">
+    <%= form.label :image, "Imagen", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= form.text_field :image, placeholder: "URL Imagen", class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="input-group py-2">
+    <%= form.label :title, "Titulo", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= form.text_field :title, placeholder: "Titulo", class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="input-group py-2">
+    <%= form.label :description, "Descripción", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= form.text_area :description, placeholder: "Descripción", class: "form-control" %>
   </div>
-
-  <div>
-    <%= form.submit %>
+  
+  <div class="py-2">
+    <% if action_name == "new" %>
+      <%= form.submit "Guardar", class: "btn btn-success rounded-pill fw-semibold text-white" %>
+    <% else %>
+      <%= form.submit "Actualizar", class: "btn btn-success rounded-pill fw-semibold text-white" %>
+    <% end %>
   </div>
 <% end %>
