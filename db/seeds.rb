@@ -7,7 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 User.create!([
   { email: 'enzoquiomaster@gmail.com',
-    password: '123456'
+    password: '123456',
+    role: 1
   }
 ])
 9.times do
